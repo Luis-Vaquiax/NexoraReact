@@ -1,12 +1,12 @@
 const brands = [
   { name: "Apple", image: "/images/marcas/apple.png" },
-  { name: "Samsung", image: "/images/marcas/samsung.png" },
+  { name: "Samsung", image: "/images/marcas/samsung.jpg" },
   { name: "HP", image: "/images/marcas/hp.png" },
   { name: "Dell", image: "/images/marcas/dell.png" },
   { name: "Lenovo", image: "/images/marcas/lenovo.png" },
   { name: "ASUS", image: "/images/marcas/asus.png" },
   { name: "Acer", image: "/images/marcas/acer.png" },
-  { name: "MSI", image: "/images/marcas/msi.png" },
+  { name: "MSI", image: "/images/marcas/msi.jpg" },
   { name: "Sony", image: "/images/marcas/sony.png" },
   { name: "LG", image: "/images/marcas/lg.png" },
   { name: "Xiaomi", image: "/images/marcas/xiaomi.png" },
@@ -28,14 +28,13 @@ const brands = [
   { name: "Xerox", image: "/images/marcas/xerox.png" },
   { name: "TP-Link", image: "/images/marcas/tplink.png" },
   { name: "Cisco", image: "/images/marcas/cisco.png" },
-  { name: "Ubiquiti", image: "/images/marcas/ubiquiti.png" },
   { name: "JBL", image: "/images/marcas/jbl.png" },
   { name: "Bose", image: "/images/marcas/bose.png" },
   { name: "Microsoft", image: "/images/marcas/microsoft.png" },
   { name: "Google", image: "/images/marcas/google.png" },
   { name: "Nintendo", image: "/images/marcas/nintendo.png" },
   { name: "TCL", image: "/images/marcas/tcl.png" },
-  { name: "Hisense", image: "/images/marcas/hisense.png" },
+  { name: "Hisense", image: "/images/marcas/eset.png" },
 ]
 
 export default function Brands() {

@@ -3,7 +3,7 @@ const products = [
       id: 603, 
       Nombre: "Xiaomi Watch S3", 
       Precio: 1200.00, 
-      ImageUrl: "/images/xiaomi-s3.jpg", 
+      ImageUrl: "/images/Xiaomi Watch S3.jpg", 
       Marca: { Nombre: "XIAOMI" }, 
       Categoria: "Smartwatch",
       description: "Bisel intercambiable, HyperOS y monitoreo de salud de alta precisión."
@@ -42,7 +42,7 @@ const products = [
       id: 603, 
       Nombre: "Xiaomi Watch S3", 
       Precio: 1200.00, 
-      ImageUrl: "/images/xiaomi-s3.jpg", 
+      ImageUrl: "/images/Xiaomi Watch S3.jpg", 
       Marca: { Nombre: "XIAOMI" }, 
       Categoria: "Smartwatch",
       description: "Bisel intercambiable, HyperOS y monitoreo de salud de alta precisión."

@@ -116,10 +116,15 @@ export default function Navbar({
   searchTerm = "",
   onSearchChange = () => {},
 }) {
+
   const [openCategories, setOpenCategories] = useState(false)
-  const [activeCategory, setActiveCategory] = useState(categories[0])
+
+  const [activeCategory, setActiveCategory] = useState(
+    categories[0]
+  )
 
   return (
+
     <header className="sticky top-0 z-50 w-full bg-white border-b border-gray-200 shadow-sm">
 
       <div className="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between gap-6 relative">
@@ -153,22 +158,26 @@ export default function Navbar({
         <div className="relative">
 
           <button
-            onClick={() => setOpenCategories(!openCategories)}
+            onClick={() =>
+              setOpenCategories(!openCategories)
+            }
             className="hidden lg:flex items-center gap-3 bg-gray-100 hover:bg-gray-200 transition px-6 py-4 rounded-2xl font-semibold text-gray-700"
           >
+
             <Grid2X2 size={20} />
 
             Categorías
+
           </button>
 
           {openCategories && (
 
-            <div className="absolute left-0 top- [64px] w- [620px] bg-white rounded-3xl shadow-2xl border border-gray-100 overflow-hidden z- [999]">
+            <div className="absolute left-0 top-[64px] w-[620px] bg-white rounded-3xl shadow-2xl border border-gray-100 overflow-hidden z-[999]">
 
-              <div className="grid grid-cols-[280px_1fr] min-h- [420px]">
+              <div className="grid grid-cols-[280px_1fr] min-h-[420px]">
 
-                {/* CATEGORÍAS */}
-                <div className="bg-white border-r border-gray-100 py-3 max-h- [430px] overflow-y-auto">
+                {/* LISTA */}
+                <div className="bg-white border-r border-gray-100 py-3 max-h-[430px] overflow-y-auto">
 
                   {categories.map((cat) => {
 
@@ -181,8 +190,12 @@ export default function Navbar({
 
                       <button
                         key={cat.name}
-                        onMouseEnter={() => setActiveCategory(cat)}
-                        onClick={() => setActiveCategory(cat)}
+                        onMouseEnter={() =>
+                          setActiveCategory(cat)
+                        }
+                        onClick={() =>
+                          setActiveCategory(cat)
+                        }
                         className={`w-full flex items-center justify-between px-5 py-4 text-left transition ${
                           active
                             ? "bg-blue-50 text-blue-600"
@@ -261,10 +274,14 @@ export default function Navbar({
             />
 
             <button
-              onClick={() => onSearchChange(searchTerm)}
+              onClick={() =>
+                onSearchChange(searchTerm)
+              }
               className="bg-blue-600 hover:bg-blue-700 transition w-16 h-14 flex items-center justify-center text-white"
             >
+
               <Search size={22} />
+
             </button>
 
           </div>
@@ -285,6 +302,7 @@ export default function Navbar({
             </div>
 
             <div className="text-left">
+
               <p className="text-xs text-gray-400">
                 Mi
               </p>
@@ -292,6 +310,7 @@ export default function Navbar({
               <p className="font-semibold text-sm">
                 Cuenta
               </p>
+
             </div>
 
           </button>
@@ -304,6 +323,7 @@ export default function Navbar({
             </div>
 
             <div className="text-left">
+
               <p className="text-xs text-gray-400">
                 Mis
               </p>
@@ -311,6 +331,7 @@ export default function Navbar({
               <p className="font-semibold text-sm">
                 Favoritos
               </p>
+
             </div>
 
           </button>
@@ -340,31 +361,34 @@ export default function Navbar({
 
       </div>
 
-      {/* MENU INFERIOR */}
+      {/* MENÚ INFERIOR */}
       <div className="border-t border-gray-100">
 
         <div className="max-w-7xl mx-auto px-6 h-14 flex items-center justify-center gap-10 text-gray-600 font-medium text-sm">
 
           <a
-            href="#"
+            href="/ofertas"
             className="hover:text-blue-600 transition"
           >
             Ofertas
           </a>
 
           <a
-            href="#"
+            href="/productos"
             className="hover:text-blue-600 transition"
           >
             Productos
           </a>
 
-          <a href="/Marcas" className="hover:text-blue-600 transition">
-             Marcas
+          <a
+            href="/marcas"
+            className="hover:text-blue-600 transition"
+          >
+            Marcas
           </a>
 
           <a
-            href="#"
+            href="/nuevo"
             className="hover:text-blue-600 transition"
           >
             Nuevo
@@ -393,11 +417,11 @@ export default function Navbar({
 
           </button>
 
-
         </div>
 
       </div>
 
     </header>
+
   )
 }
