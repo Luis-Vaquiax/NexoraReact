@@ -1,27 +1,32 @@
-import { useState } from "react"
-import products from "../data/products"
+import { useEffect, useState } from "react"
 import ProductCard from "../components/ProductCard"
-
-const categories = [
-  "Todos",
-  "Computadoras",
-  "Impresoras",
-  "Componentes de PC",
-  "Accesorios de Computadora",
-  "Gaming",
-  "Redes y Conectividad",
-  "Telefonía y Tablets",
-  "Audio y Video",
-]
+import {
+  getProducts,
+  getCategories,
+  getBrands,
+} from "../services/productService"
 
 export default function ProductsPage({ addToCart }) {
+  const [products, setProducts] = useState([])
+  const [categories, setCategories] = useState([])
+  const [brands, setBrands] = useState([])
+
   const [selectedCategory, setSelectedCategory] = useState("Todos")
   const [selectedBrand, setSelectedBrand] = useState("Todas")
 
-  const brands = [
-    "Todas",
-    ...new Set(products.map((p) => p.Marca?.Nombre).filter(Boolean)),
-  ]
+  useEffect(() => {
+    const loadData = async () => {
+      const productosDB = await getProducts()
+      const categoriasDB = await getCategories()
+      const marcasDB = await getBrands()
+
+      setProducts(productosDB)
+      setCategories(categoriasDB)
+      setBrands(marcasDB)
+    }
+
+    loadData()
+  }, [])
 
   const filteredProducts = products.filter((product) => {
     const categoryMatch =
@@ -30,7 +35,7 @@ export default function ProductsPage({ addToCart }) {
 
     const brandMatch =
       selectedBrand === "Todas" ||
-      product.Marca?.Nombre === selectedBrand
+      product.Marca === selectedBrand
 
     return categoryMatch && brandMatch
   })
@@ -38,7 +43,6 @@ export default function ProductsPage({ addToCart }) {
   return (
     <section className="bg-[#f5f7ff] min-h-screen px-6 py-10">
       <div className="max-w-7xl mx-auto grid lg:grid-cols-[260px_1fr] gap-8">
-
         <aside className="bg-white rounded-3xl p-6 shadow-sm h-fit sticky top-36">
           <div className="flex justify-between items-center mb-6">
             <h2 className="text-xl font-bold">Filtros</h2>
@@ -58,19 +62,30 @@ export default function ProductsPage({ addToCart }) {
             <h3 className="font-bold mb-4">Categoría</h3>
 
             <div className="space-y-3">
+              <label className="flex items-center gap-3 text-gray-600 cursor-pointer">
+                <input
+                  type="radio"
+                  name="category"
+                  checked={selectedCategory === "Todos"}
+                  onChange={() => setSelectedCategory("Todos")}
+                  className="accent-blue-600"
+                />
+                Todos
+              </label>
+
               {categories.map((cat) => (
                 <label
-                  key={cat}
+                  key={cat.Id}
                   className="flex items-center gap-3 text-gray-600 cursor-pointer"
                 >
                   <input
                     type="radio"
                     name="category"
-                    checked={selectedCategory === cat}
-                    onChange={() => setSelectedCategory(cat)}
+                    checked={selectedCategory === cat.Nombre}
+                    onChange={() => setSelectedCategory(cat.Nombre)}
                     className="accent-blue-600"
                   />
-                  {cat}
+                  {cat.Nombre}
                 </label>
               ))}
             </div>
@@ -80,19 +95,30 @@ export default function ProductsPage({ addToCart }) {
             <h3 className="font-bold mb-4">Marca</h3>
 
             <div className="space-y-3">
+              <label className="flex items-center gap-3 text-gray-600 cursor-pointer">
+                <input
+                  type="radio"
+                  name="brand"
+                  checked={selectedBrand === "Todas"}
+                  onChange={() => setSelectedBrand("Todas")}
+                  className="accent-blue-600"
+                />
+                Todas
+              </label>
+
               {brands.map((brand) => (
                 <label
-                  key={brand}
+                  key={brand.Id}
                   className="flex items-center gap-3 text-gray-600 cursor-pointer"
                 >
                   <input
                     type="radio"
                     name="brand"
-                    checked={selectedBrand === brand}
-                    onChange={() => setSelectedBrand(brand)}
+                    checked={selectedBrand === brand.Nombre}
+                    onChange={() => setSelectedBrand(brand.Nombre)}
                     className="accent-blue-600"
                   />
-                  {brand}
+                  {brand.Nombre}
                 </label>
               ))}
             </div>
@@ -113,14 +139,13 @@ export default function ProductsPage({ addToCart }) {
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {filteredProducts.map((product) => (
               <ProductCard
-                key={product.id}
+                key={product.Id}
                 product={product}
                 addToCart={addToCart}
               />
             ))}
           </div>
         </div>
-
       </div>
     </section>
   )
